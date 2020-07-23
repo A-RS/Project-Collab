@@ -6,8 +6,6 @@ from flask import request
 # from flask_pymongo import PyMongo
 
 
-#HI WHAT IS UP?
-
 # -- Initialization section --
 app = Flask(__name__)
 
