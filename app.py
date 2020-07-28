@@ -3,17 +3,11 @@
 from flask import Flask
 from flask import render_template
 from flask import request
+
 # from flask_pymongo import PyMongo
-
-
 # -- Initialization section --
 app = Flask(__name__)
 
-events = [
-        {"event":"First Day of Classes", "date":"2019-08-21"},
-        {"event":"Winter Break", "date":"2019-12-20"},
-        {"event":"Finals Begin", "date":"2019-12-01"}
-    ]
 
 # name of database
 # app.config['MONGO_DBNAME'] = 'database-name'
@@ -27,20 +21,30 @@ events = [
 # INDEX
 
 @app.route('/')
-@app.route('/index')
-
+@app.route('/index', methods =["GET","POST"])
 def index():
-    return render_template('index.html', events = events)
+    return render_template('index.html')
+
+@app.route('/quiz', methods =["GET","POST"])
+def quiz ():
+    return render_template('quiz.html')
 
 
-# CONNECT TO DB, ADD DATA
+@app.route('/results', methods =["GET","POST"])
+def results ():
+    if request.form['/results']=="POST":
+        density= request.form["density"]
+        porocity= request.form["porosity"]
+        hair_type=request.form["type"]
+        hair_condition= request.form["condition"]
+        if density == request.form["dry"] and hair_type == request.form["4a"]:
+            return render_template("results.html")
+            print("hair")
 
-@app.route('/add')
+        
 
-def add():
-    # connect to the database
 
-    # insert new data
 
-    # return a message to the user
-    return ""
+
+
+
